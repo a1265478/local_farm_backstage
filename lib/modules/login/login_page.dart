@@ -12,59 +12,75 @@ class LoginPage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const SizedBox(height: 30),
           Container(
             alignment: Alignment.center,
-            child: const Text("Login"),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(50),
+            child: const Text(
+              "Login",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-              child: Form(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("帳號"),
-                    TextFormField(
-                      onChanged: (value) => BlocProvider.of<AuthBloc>(context)
-                          .add(ChangeAccount(account: value)),
+            ),
+          ),
+          const SizedBox(height: 30),
+          Container(
+            constraints: const BoxConstraints(maxWidth: 500),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              border: Border.all(color: Colors.green, width: 3),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+            child: Form(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextFormField(
+                    onChanged: (value) => BlocProvider.of<AuthBloc>(context)
+                        .add(ChangeAccount(account: value)),
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.account_box),
+                      labelText: "帳號",
                     ),
-                    const Text("密碼"),
-                    TextFormField(
-                      obscureText: true,
-                      onChanged: (value) => BlocProvider.of<AuthBloc>(context)
-                          .add(ChangePassword(password: value)),
+                  ),
+                  TextFormField(
+                    obscureText: true,
+                    onChanged: (value) => BlocProvider.of<AuthBloc>(context)
+                        .add(ChangePassword(password: value)),
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.vpn_key),
+                      labelText: "密碼",
                     ),
-                    const SizedBox(height: 30),
-                    Center(
-                      child: BlocBuilder<AuthBloc, AuthState>(
-                        builder: (context, state) {
-                          if (state.status == Status.working) {
-                            return const CircularProgressIndicator();
-                          }
-                          return ElevatedButton(
-                            onPressed: () {
-                              BlocProvider.of<AuthBloc>(context).add(Login());
-                            },
-                            child: const Text("登入"),
-                          );
-                        },
-                      ),
-                    ),
-                    BlocBuilder<AuthBloc, AuthState>(
+                  ),
+                  const SizedBox(height: 30),
+                  Center(
+                    child: BlocBuilder<AuthBloc, AuthState>(
                       builder: (context, state) {
-                        return Text(
-                          state.errorMsg,
-                          style: TextStyle(color: Colors.red),
+                        if (state.status == Status.working) {
+                          return const CircularProgressIndicator();
+                        }
+                        return ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.green,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 50, vertical: 10)),
+                          onPressed: () {
+                            BlocProvider.of<AuthBloc>(context).add(Login());
+                          },
+                          child: const Text("登入"),
                         );
                       },
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                  BlocBuilder<AuthBloc, AuthState>(
+                    builder: (context, state) {
+                      return Text(
+                        state.errorMsg,
+                        style: const TextStyle(color: Colors.red),
+                      );
+                    },
+                  )
+                ],
               ),
             ),
           )
