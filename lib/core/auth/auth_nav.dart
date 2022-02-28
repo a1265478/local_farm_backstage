@@ -17,7 +17,7 @@ class AuthNav extends StatelessWidget {
             if (state.status != Status.success)
               const MaterialPage(child: LoginPage()),
             if (state.status == Status.success)
-              const MaterialPage(child: Dashboard()),
+              MaterialPage(child: Dashboard()),
           ],
           onPopPage: (route, result) => route.didPop(result),
         );
