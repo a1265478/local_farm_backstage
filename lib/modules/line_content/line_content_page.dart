@@ -21,63 +21,70 @@ class LineContentPage extends StatelessWidget {
             UpdateResultSnakeBar.show(context, result: state.updateStatus);
           }
         },
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BlocBuilder<LineContentCubit, LineContentState>(
-              builder: (context, state) {
-                return Row(
-                  children: [
-                    ActionButton(
-                      title: "選擇圖片",
-                      onPressed: () {
-                        BlocProvider.of<LineContentCubit>(context).chooseFile();
-                      },
-                    ),
-                    const SizedBox(width: 10),
-                    state.updateStatus == Status.working
-                        ? const DisableActionButton()
-                        : ActionButton(
-                            onPressed: () {
-                              BlocProvider.of<LineContentCubit>(context)
-                                  .submitImageFile();
-                            },
-                          ),
-                  ],
-                );
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Text("圖片標準比例： 1250 x 843", style: kImportant),
-            ),
-            BlocBuilder<LineContentCubit, LineContentState>(
-              builder: (context, state) {
-                return Wrap(
-                  runSpacing: 5,
-                  spacing: 10,
-                  children: [
-                    ...state.imageList.map(
-                      (e) => SizedBox(
-                        width: MediaQuery.of(context).size.width / 4 < 300
-                            ? 300
-                            : MediaQuery.of(context).size.width / 4,
-                        child: UploadImage(
-                          ratio: (1250 / 3) / (843 / 3),
-                          imageFile: e,
-                          onDelete: () {
+        child: Scaffold(
+          body: SingleChildScrollView(
+            padding: kPagePadding,
+            key: const PageStorageKey("lineContent"),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BlocBuilder<LineContentCubit, LineContentState>(
+                  builder: (context, state) {
+                    return Row(
+                      children: [
+                        ActionButton(
+                          title: "選擇圖片",
+                          onPressed: () {
                             BlocProvider.of<LineContentCubit>(context)
-                                .deleteImage(e.filename);
+                                .chooseFile();
                           },
                         ),
-                      ),
-                    ),
-                  ],
-                );
-              },
+                        const SizedBox(width: 10),
+                        state.updateStatus == Status.working
+                            ? const DisableActionButton()
+                            : ActionButton(
+                                onPressed: () {
+                                  BlocProvider.of<LineContentCubit>(context)
+                                      .submitImageFile();
+                                },
+                              ),
+                      ],
+                    );
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text("圖片標準比例： 1250 x 843", style: kImportant),
+                ),
+                BlocBuilder<LineContentCubit, LineContentState>(
+                  builder: (context, state) {
+                    return Wrap(
+                      runSpacing: 5,
+                      spacing: 10,
+                      children: [
+                        ...state.imageList.map(
+                          (e) => SizedBox(
+                            width: MediaQuery.of(context).size.width / 4 < 300
+                                ? 300
+                                : MediaQuery.of(context).size.width / 4,
+                            child: UploadImage(
+                              ratio: (1250 / 3) / (843 / 3),
+                              imageFile: e,
+                              onDelete: () {
+                                BlocProvider.of<LineContentCubit>(context)
+                                    .deleteImage(e.filename);
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

@@ -23,43 +23,47 @@ class IntroductionPage extends StatelessWidget {
             UpdateResultSnakeBar.show(context, result: state.updateStatus);
           }
         },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            Container(
-              alignment: Alignment.center,
-              child: BlocBuilder<IntroductionCubit, IntroductionState>(
+        child: SingleChildScrollView(
+          padding: kPagePadding,
+          key: const PageStorageKey("Introduction"),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              Container(
+                alignment: Alignment.center,
+                child: BlocBuilder<IntroductionCubit, IntroductionState>(
+                  builder: (context, state) {
+                    return Wrap(
+                      runSpacing: 20,
+                      spacing: 20,
+                      children: [
+                        ...List.generate(
+                          state.introductionList.length,
+                          (index) => _categoryForm(
+                              context, state.introductionList[index]),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 20),
+              Align(
+                alignment: Alignment.center,
+                child: _saveButton(),
+              ),
+              BlocBuilder<IntroductionCubit, IntroductionState>(
                 builder: (context, state) {
-                  return Wrap(
-                    runSpacing: 20,
-                    spacing: 20,
-                    children: [
-                      ...List.generate(
-                        state.introductionList.length,
-                        (index) => _categoryForm(
-                            context, state.introductionList[index]),
-                      ),
-                    ],
+                  return Text(
+                    state.updateStatus == Status.failure ? "Error" : "",
+                    style: kSubmitError,
                   );
                 },
-              ),
-            ),
-            const SizedBox(height: 20),
-            Align(
-              alignment: Alignment.center,
-              child: _saveButton(),
-            ),
-            BlocBuilder<IntroductionCubit, IntroductionState>(
-              builder: (context, state) {
-                return Text(
-                  state.updateStatus == Status.failure ? "Error" : "",
-                  style: kSubmitError,
-                );
-              },
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

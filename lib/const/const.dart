@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
+const Color kNavBarBackgoundColor = Color(0xFFD1CEC9);
+
 const Color kPrimaryColor = Color(0xFFE5E3C9);
 const Color kLightGreenColor = Color(0xFFB4CFB0);
 const Color kRegularGreenColor = Color(0xFF94B49F);
 const Color kDarkGreenColor = Color(0xFF789395);
 const Color kDisableColor = Color(0xFF939393);
+const EdgeInsetsGeometry kPagePadding =
+    EdgeInsets.symmetric(horizontal: 50, vertical: 30);
 
 TextStyle kHeaderTextStyle = const TextStyle(
   fontSize: 32,
@@ -38,3 +42,7 @@ List<String> pageTitleList = [
   "聯絡我們",
   "下載檔案"
 ];
+
+const kEnableBorder = OutlineInputBorder(
+  borderSide: BorderSide(color: kDarkGreenColor, width: 2.0),
+);

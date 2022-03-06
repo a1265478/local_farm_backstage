@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:local_farm_backstage/core/auth/auth_nav.dart';
 import 'package:local_farm_backstage/modules/dashboard/dashboard.dart';
 import 'package:local_farm_backstage/modules/login/login_page.dart';
+import 'package:local_farm_backstage/modules/service/service_editor.dart';
+import 'package:local_farm_backstage/modules/service/service_page.dart';
 
 import 'core/auth/auth_bloc.dart';
 
@@ -49,6 +51,7 @@ class MyApp extends StatelessWidget {
       ),
       // home: const AuthNav(),
       home: Dashboard(),
+      // home: ServicePage(),
     );
   }
 }

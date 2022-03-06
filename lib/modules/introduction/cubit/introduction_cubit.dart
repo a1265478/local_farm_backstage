@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:local_farm_backstage/core/enumKey.dart';
 import 'package:local_farm_backstage/core/firebase_repository.dart';
 import 'package:local_farm_backstage/core/model/introduction.dart';

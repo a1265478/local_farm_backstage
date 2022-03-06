@@ -22,57 +22,61 @@ class Banners extends StatelessWidget {
             UpdateResultSnakeBar.show(context, result: state.uploadStatus);
           }
         },
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BlocBuilder<BannerCubit, BannerState>(
-              builder: (context, state) {
-                return Row(
-                  children: [
-                    ActionButton(
-                      title: "選擇圖片",
-                      onPressed: () {
-                        BlocProvider.of<BannerCubit>(context).chooseFile();
-                      },
-                    ),
-                    const SizedBox(width: 10),
-                    state.uploadStatus == Status.working
-                        ? const DisableActionButton()
-                        : ActionButton(
-                            onPressed: () {
-                              BlocProvider.of<BannerCubit>(context)
-                                  .submitImageFile();
-                            },
-                          ),
-                  ],
-                );
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Text("Banner 標準比例： 970 x 250", style: kImportant),
-            ),
-            BlocBuilder<BannerCubit, BannerState>(
-              builder: (context, state) {
-                return Wrap(
-                  runSpacing: 5,
-                  children: [
-                    ...state.imageList.map(
-                      (e) => UploadImage(
-                        ratio: 970 / 250,
-                        imageFile: e,
-                        onDelete: () {
-                          BlocProvider.of<BannerCubit>(context)
-                              .deleteImage(e.filename);
+        child: SingleChildScrollView(
+          padding: kPagePadding,
+          key: const PageStorageKey("banner"),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BlocBuilder<BannerCubit, BannerState>(
+                builder: (context, state) {
+                  return Row(
+                    children: [
+                      ActionButton(
+                        title: "選擇圖片",
+                        onPressed: () {
+                          BlocProvider.of<BannerCubit>(context).chooseFile();
                         },
                       ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ],
+                      const SizedBox(width: 10),
+                      state.uploadStatus == Status.working
+                          ? const DisableActionButton()
+                          : ActionButton(
+                              onPressed: () {
+                                BlocProvider.of<BannerCubit>(context)
+                                    .submitImageFile();
+                              },
+                            ),
+                    ],
+                  );
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Text("Banner 標準比例： 970 x 250", style: kImportant),
+              ),
+              BlocBuilder<BannerCubit, BannerState>(
+                builder: (context, state) {
+                  return Wrap(
+                    runSpacing: 5,
+                    children: [
+                      ...state.imageList.map(
+                        (e) => UploadImage(
+                          ratio: 970 / 250,
+                          imageFile: e,
+                          onDelete: () {
+                            BlocProvider.of<BannerCubit>(context)
+                                .deleteImage(e.filename);
+                          },
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
