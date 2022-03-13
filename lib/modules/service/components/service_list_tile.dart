@@ -16,6 +16,7 @@ class ServiceListTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
+        onTap: () {},
         title: Text(service.title),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,

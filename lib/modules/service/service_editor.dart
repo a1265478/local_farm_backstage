@@ -4,7 +4,6 @@ import 'package:local_farm_backstage/const/const.dart';
 import 'package:local_farm_backstage/modules/service/cubit/service_cubit.dart';
 import 'package:local_farm_backstage/modules/service/model/service.dart';
 import 'package:local_farm_backstage/widgets/action_button.dart';
-
 import 'components/type_radio_button.dart';
 
 class ServiceEditor extends StatelessWidget {

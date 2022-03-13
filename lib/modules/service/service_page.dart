@@ -5,6 +5,7 @@ import 'package:local_farm_backstage/core/enumKey.dart';
 import 'package:local_farm_backstage/modules/service/components/service_list_tile.dart';
 import 'package:local_farm_backstage/modules/service/cubit/service_cubit.dart';
 import 'package:local_farm_backstage/modules/service/service_editor.dart';
+import 'package:local_farm_backstage/util/uikit.dart';
 import 'package:local_farm_backstage/widgets/update_result_snake_bar.dart';
 
 import 'model/service.dart';
@@ -27,7 +28,6 @@ class ServicePage extends StatelessWidget {
                 Navigator.maybePop(context);
               }
             }
-            // TODO: implement listener
           },
           child: SingleChildScrollView(
             padding: kPagePadding,

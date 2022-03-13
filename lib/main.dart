@@ -3,13 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:local_farm_backstage/core/auth/auth_nav.dart';
-import 'package:local_farm_backstage/modules/dashboard/dashboard.dart';
-import 'package:local_farm_backstage/modules/login/login_page.dart';
-import 'package:local_farm_backstage/modules/service/service_editor.dart';
-import 'package:local_farm_backstage/modules/service/service_page.dart';
 
 import 'core/auth/auth_bloc.dart';
+import 'modules/customer/custom_list_page.dart';
+import 'modules/dashboard/dashboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,14 +41,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Local Farm Backstage',
+      title: 'Backstage',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         fontFamily: "NotoSansTC",
       ),
       // home: const AuthNav(),
       home: Dashboard(),
-      // home: ServicePage(),
+      // home: CustomListPage(),
     );
   }
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:local_farm_backstage/const/const.dart';
 import 'package:local_farm_backstage/core/firebase_repository.dart';
 import 'package:local_farm_backstage/modules/banners/banners.dart';
+import 'package:local_farm_backstage/modules/customer/custom_list_page.dart';
 import 'package:local_farm_backstage/modules/dashboard/cubit/dashboard_cubit.dart';
-import 'package:local_farm_backstage/modules/dashboard/dash_nav.dart';
 import 'package:local_farm_backstage/modules/dashboard/my_drawer.dart';
+import 'package:local_farm_backstage/modules/download/download_page.dart';
+import 'package:local_farm_backstage/modules/info/info_page.dart';
 
 import 'package:local_farm_backstage/modules/introduction/introduction_page.dart';
 import 'package:local_farm_backstage/modules/line_content/line_content_page.dart';
@@ -52,6 +53,12 @@ class _DashboardState extends State<Dashboard> {
                             const MaterialPage(child: LineContentPage()),
                           if (state.currentIndex == 3)
                             MaterialPage(child: ServicePage()),
+                          if (state.currentIndex == 4)
+                            MaterialPage(child: CustomListPage()),
+                          if (state.currentIndex == 5)
+                            MaterialPage(child: InfoPage()),
+                          if (state.currentIndex == 6)
+                            MaterialPage(child: DownloadPage())
                         ],
                         onPopPage: (route, result) => route.didPop(result),
                       ),
