@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "local-farm-ff7b7",
+    "backstage": "local-farm-ff7b7"
+  },
+  "targets": {
+    "local-farm-ff7b7": {
+      "hosting": {
+        "backstage": [
+          "backstage-65535"
+        ]
+      }
+    }
+  }
+}

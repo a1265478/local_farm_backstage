@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/auth/auth_bloc.dart';
+import 'core/auth/auth_nav.dart';
 import 'modules/customer/custom_list_page.dart';
 import 'modules/dashboard/dashboard.dart';
 
@@ -46,9 +47,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: "NotoSansTC",
       ),
-      // home: const AuthNav(),
-      home: Dashboard(),
-      // home: CustomListPage(),
+      home: const AuthNav(),
     );
   }
 }

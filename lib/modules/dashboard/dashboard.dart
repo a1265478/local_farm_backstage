@@ -58,7 +58,7 @@ class _DashboardState extends State<Dashboard> {
                           if (state.currentIndex == 5)
                             MaterialPage(child: InfoPage()),
                           if (state.currentIndex == 6)
-                            MaterialPage(child: DownloadPage())
+                            const MaterialPage(child: DownloadPage())
                         ],
                         onPopPage: (route, result) => route.didPop(result),
                       ),

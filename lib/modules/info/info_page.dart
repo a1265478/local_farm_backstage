@@ -34,29 +34,6 @@ class InfoPage extends StatelessWidget {
                 child: Column(
                   children: [
                     TextFormField(
-                      initialValue: state.info.sendEmail,
-                      style: const TextStyle(fontSize: 18),
-                      decoration: const InputDecoration(
-                        label: Text("收件者"),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: kDarkGreenColor, width: 2.0),
-                        ),
-                        border: OutlineInputBorder(),
-                      ),
-                      onChanged: (value) {
-                        BlocProvider.of<InfoCubit>(context)
-                            .changeSendEmail(value);
-                      },
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "內容不得為空";
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                    TextFormField(
                       initialValue: state.info.email,
                       style: const TextStyle(fontSize: 18),
                       decoration: const InputDecoration(

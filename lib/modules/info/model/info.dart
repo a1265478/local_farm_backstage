@@ -1,14 +1,12 @@
 import 'dart:convert';
 
 class Info {
-  final String sendEmail;
   final String email;
   final String address;
   final String mobilePhone;
   final String phone;
 
   const Info({
-    this.sendEmail = "",
     this.email = "",
     this.address = "",
     this.mobilePhone = "",
@@ -18,14 +16,12 @@ class Info {
   static const empty = Info();
 
   Info copyWith({
-    String? sendEmail,
     String? email,
     String? address,
     String? mobilePhone,
     String? phone,
   }) {
     return Info(
-      sendEmail: sendEmail ?? this.sendEmail,
       email: email ?? this.email,
       address: address ?? this.address,
       mobilePhone: mobilePhone ?? this.mobilePhone,
@@ -35,7 +31,6 @@ class Info {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'sendEmail': sendEmail,
       'email': email,
       'address': address,
       'mobilePhone': mobilePhone,
@@ -45,7 +40,6 @@ class Info {
 
   factory Info.fromJson(Map<String, dynamic> map) {
     return Info(
-      sendEmail: map['sendEmail'] as String,
       email: map['email'] as String,
       address: map['address'] as String,
       mobilePhone: map['mobilePhone'] as String,
@@ -57,6 +51,6 @@ class Info {
 
   @override
   String toString() {
-    return 'Info(sendEmail: $sendEmail, email: $email, address: $address, mobilePhone: $mobilePhone, phone: $phone)';
+    return 'Info( email: $email, address: $address, mobilePhone: $mobilePhone, phone: $phone)';
   }
 }

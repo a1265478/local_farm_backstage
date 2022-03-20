@@ -19,9 +19,6 @@ class InfoCubit extends Cubit<InfoState> {
     }
   }
 
-  void changeSendEmail(String value) =>
-      emit(state.copyWith(info: state.info.copyWith(sendEmail: value)));
-
   void changeEmail(String value) =>
       emit(state.copyWith(info: state.info.copyWith(email: value)));
 
